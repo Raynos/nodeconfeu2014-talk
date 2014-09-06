@@ -108,9 +108,73 @@ We also use remote overwrites heavily, we have a service in
 
 ## Slide 6
 
+Next, let's talk about uncaught exceptions. Shit is going to go
+  bad, you will deploy code with bugs.
+
+And you want to know about them.
+
+The three steps to dealing with uncaught exceptions are
+
+Get them out of the process. The uncaught-exception module
+  we used has two techniques, it will use the logger to write
+  the error to all backends, we support asynchronous logging
+  so we will know when the error is flushed.
+
+However we also write the error to the backup file descriptor,
+  we've had too many production exceptions getting swallowed
+  because there we a bug in the logger.
+
+Next we do a graceful shutdown, a node.js process has to go
+  down on all unhandled thrown exceptions, no excuses, no
+  special snowflakes, no "but I know better". However we do
+  want to exit cleanly.
+
+And finally we abort the process and we dump core. The core dump
+  can then be used for later analysis or deleted.
+
 ## Slide 7
 
+Every service you put into production, from day one, will need
+  a control port.
+
+A control port is something internal listening on localhost that
+  you can talk to by sshing into the production machine and
+  telling it to do things.
+
+Currently the control port we open sourced has two features,
+  the ability to turn CPU profiling on at run time and the
+  ability to turn heapdumps on at runtime.
+
+This is a really nice thing to just permanently have, because
+  you when you want to debug a bug in production you are going
+  to wish you had setup the CPU and heap instrumentation. If
+  you try and add that instrumentation by redeploying you
+  probably will not be able to reproduce the bug.
+
 ## Slide 8
+
+The final part to productionizing a service is to take ownership
+  and responsibility.
+
+If you put something in production and it goes down, you wake
+  up at 3am and resolve it within 10 minutes. If it's still
+  unresolved you escalate and get help from managers and work on it
+  until it's resolved.
+
+We need tooling in place to ensure that if a failure happens
+  that an engineer deals with it. We use nagios for this.
+
+We've configured nagios to let us know if a health check fails.
+  Note a health check does two things, it lets us know the
+  http server is up and that important dependencies of the
+  service are up.
+
+We've configured nagios to monitor our graphite dashboards
+  for any spikes worth telling us about.
+
+We've configured nagios to tell pager duty to wake engineers up
+  and if no engineers wake up then we wake up ALL the managers
+  and directors.
 
 ## Slide 9
 
