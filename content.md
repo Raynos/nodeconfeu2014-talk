@@ -84,3 +84,39 @@ We monitor all traffic, including 400s and 500s by default for
 
 We also monitor a lot of custom information for our business objects
   and events so that we can be notified of any anamolies.
+
+## Slide 5
+
+We don't want logging and monitoring to be enabled heavily  
+  when we are working locally.
+
+We need a way to be able to configure how our applications work
+  locally and in various production environments.
+
+This is best done with a set of JSON files. We allow JSON files
+  for local environment, production environment and for the
+  various data centers we have. 
+
+We then overwrite configuration using a CLI so that the
+  infrastructure can manage where we log to or what port
+  we start on.
+
+We also use remote overwrites heavily, we have a service in
+  place to be able to update configuration dynamically without
+  restarting our applications, this allows us to do many things
+  including debugging, A/B testing and toggling features.
+
+## Slide 6
+
+## Slide 7
+
+## Slide 8
+
+## Slide 9
+
+Making it easy to productionize an application is definetly one
+  step towards building high quality services.
+
+The other step is getting started in the first place. Really we
+  want to build a new service and get it deployed in one day.
+
