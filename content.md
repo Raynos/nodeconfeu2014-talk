@@ -120,3 +120,16 @@ Making it easy to productionize an application is definetly one
 The other step is getting started in the first place. Really we
   want to build a new service and get it deployed in one day.
 
+There is actually a lot involved, you have to scaffold out
+  some default files, get a git project setup, get a wiki setup.
+
+You have to setup CI, no-one likes configuring jenkins, you 
+  have to make sure your tests work, that your code coverage works.
+
+You have to make your application deployable. The way we deploy
+  is by checking information about your service into puppet so
+  that we can use puppet to deploy all services to a single EC2
+  box.
+
+Puppet is an arcane art, we really want to shield most developers
+  from this complexity and have it just work for them.
