@@ -197,3 +197,68 @@ You have to make your application deployable. The way we deploy
 
 Puppet is an arcane art, we really want to shield most developers
   from this complexity and have it just work for them.
+
+## Slide 10
+
+Potter is a modular tool that comes with almost no features
+  out of the box.
+
+It has two features, a modular help page you can plug into and
+  a way to install plugins.
+
+Internally we all install the potter base plugin. Which ships
+  with the ability to create internal libraries and internal
+  services.
+
+What does it mean to create a new thing, potter is a staged
+  workflow tool. The first stage is the local workflow.
+
+Here we check for any naming conflicts, create all the files
+  you will need for your project, create a local gitolite
+  repository and ensure your tests pass locally.
+
+This means run npm install and make sure your scaffold has 100%
+  code coverage (we do code coverage at uber.)
+
+This is all you need to work locally, your comfortably setup.
+
+Most of the time you will go onto the local workflow step
+  immediately but sometimes you just want to experiment with
+  an idea locally in "secret".
+
+## Slide 11
+
+The next workflow is the shared workflow. Here we make interacting
+  with our infrastructure at uber easier but it can interact
+  with anything you want.
+
+We push your code upto a git server whether thats an internal
+  gitolite server or github.
+
+We setup the documentation and wiki websites for you, whether
+  that's a github README and a github wiki or an internal wiki
+  website and an internal documentation website.
+
+We setup CI for you, whether that's jenkins or travis. We ensure
+  that we integrate the CI with your local workflow, if you
+  make a pull request on github we start a build, if you make
+  an arcanist differential internally we trigger a build.
+
+Trust me, you only want one person to configure jenkins once and
+  then never have to deal with that again forever.
+
+## Slide 12
+
+EC2 blabla
+
+## Slide 13
+
+production blabla
+
+## Slide 14
+
+write your own blabla
+
+## Slide 15
+
+thanks
